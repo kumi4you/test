@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">test</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="website">Website</string>
+    <string name="phone">Phone</string>
 </resources>

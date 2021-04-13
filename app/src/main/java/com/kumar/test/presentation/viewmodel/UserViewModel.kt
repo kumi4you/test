@@ -16,7 +16,7 @@ class UserViewModel(private val getUsersUseCase: GetUsersUseCase) : ViewModel() 
     private val _userList = MutableLiveData<List<UserResponse>>()
     val userList: LiveData<List<UserResponse>> get() = _userList
 
-    private val errorHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+    private val errorHandler = CoroutineExceptionHandler { _, throwable ->
         onError(throwable)
     }
 
