@@ -20,7 +20,7 @@ class UserViewModel(private val getUsersUseCase: GetUsersUseCase) : ViewModel() 
         onError(throwable)
     }
 
-    private fun getUserList() {
+    fun getUserList() {
         viewModelScope.launch(errorHandler) {
             getUsersUseCase.execute().collect {
                 _userList.postValue(it)
