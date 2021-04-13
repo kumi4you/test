@@ -16,6 +16,9 @@ class UserViewModel(private val getUsersUseCase: GetUsersUseCase) : ViewModel() 
     private val _userList = MutableLiveData<List<UserResponse>>()
     val userList: LiveData<List<UserResponse>> get() = _userList
 
+    private val _selectedUser = MutableLiveData<UserResponse>()
+    val selectedUser: LiveData<UserResponse> get() = _selectedUser
+
     private val errorHandler = CoroutineExceptionHandler { _, throwable ->
         onError(throwable)
     }
@@ -23,14 +26,26 @@ class UserViewModel(private val getUsersUseCase: GetUsersUseCase) : ViewModel() 
     fun getUserList() {
         viewModelScope.launch(errorHandler) {
             getUsersUseCase.execute().collect {
-                _userList.postValue(it)
+                processResponse(it)
             }
+        }
+    }
+
+    private fun processResponse(list: List<UserResponse>) {
+        _userList.postValue(list)
+
+        if (list.isNotEmpty()){
+            _selectedUser.postValue(list[0])
         }
     }
 
 
     private fun onError(throwable: Throwable) {
         Log.e("Error", "Error getting the user list", throwable)
+    }
+
+    fun onItemSelect(selectedUser: UserResponse) {
+    _selectedUser.postValue(selectedUser)
     }
 
 

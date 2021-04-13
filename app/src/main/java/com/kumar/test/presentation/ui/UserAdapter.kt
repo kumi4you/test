@@ -40,5 +40,6 @@ class UserAdapter(
         var layout: ConstraintLayout = itemView.findViewById(R.id.userInfoLayout)
         var name: TextView = itemView.findViewById(R.id.textViewUserName)
         var email: TextView = itemView.findViewById(R.id.textViewUserEmail)
+
     }
 }
