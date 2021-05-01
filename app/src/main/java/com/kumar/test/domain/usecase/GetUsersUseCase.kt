@@ -5,14 +5,15 @@ import com.kumar.test.data.rest.RestService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import okhttp3.ResponseBody
 import retrofit2.Response
 
 class GetUsersUseCase(private val restService: RestService) :
-    NoInputUseCase<Flow<List<UserResponse>>> {
+    NoInputUseCase<Flow<ResponseBody>> {
 
-    override fun execute(): Flow<List<UserResponse>> {
+    override fun execute(): Flow<ResponseBody> {
         return flow {
-            val response = restService.listUsers()
+            val response = restService.listShows("girls")
             val list = emitProcessResponse(response)
             emit(list)
         }.map {
@@ -20,16 +21,9 @@ class GetUsersUseCase(private val restService: RestService) :
         }
     }
 
-    private fun emitProcessResponse(response: Response<List<UserResponse>>): List<UserResponse> =
-        when {
-            response.isSuccessful -> {
-                response.body() ?: getEmptyResponseList()
-            }
-            else -> {
-                getEmptyResponseList()
-            }
-        }
+    private fun emitProcessResponse(response: Response<ResponseBody>): ResponseBody =
+        if (response.isSuccessful) response.body()!! else response.errorBody()!!
 
-    private fun getEmptyResponseList() = listOf<UserResponse>()
+    private fun getEmptyResponseList () = listOf<UserResponse>()
 
 }

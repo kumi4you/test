@@ -26,7 +26,9 @@ class UserViewModel(private val getUsersUseCase: GetUsersUseCase) : ViewModel() 
     fun getUserList() {
         viewModelScope.launch(errorHandler) {
             getUsersUseCase.execute().collect {
-                processResponse(it)
+            Log.e("Kumi", "response: $it")
+
+             //   processResponse(it)
             }
         }
     }
