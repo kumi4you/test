@@ -1,16 +1,18 @@
 package com.kumar.test.presentation.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kumar.test.data.model.UserResponse
+import com.kumar.test.data.model.ShowResponse
 import com.kumar.test.databinding.ActivityMainBinding
-import com.kumar.test.presentation.viewmodel.UserViewModel
+import com.kumar.test.presentation.viewmodel.ShowViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: UserViewModel by viewModel()
+    private val viewModel: ShowViewModel by viewModel()
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,37 +22,54 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        viewModel.getUserList()
-
         setObservers()
+
+        binding.searchButton.setOnClickListener {
+            viewModel.getShowList(binding.editTextSearch.text.toString())
+        }
+
+        binding.buttonTitleSort.setOnClickListener {
+            viewModel.sortByTitle()
+        }
+
+        binding.buttonScoreSort.setOnClickListener {
+            viewModel.sortByScore()
+        }
+
+        binding.buttonTimeSort.setOnClickListener {
+            viewModel.sortByTime()
+        }
+
     }
+
 
     private fun setObservers() {
 
-        viewModel.userList.observe(this, {
+        viewModel.showList.observe(this, {
             setupAdapter(it)
         })
-        viewModel.selectedUser.observe(this, {
+        viewModel.selectedShow.observe(this, {
             showSelectedUserInfo(it)
         }
         )
     }
 
-    private fun showSelectedUserInfo(userResponse: UserResponse) {
-        binding.textViewEmail.text = userResponse.email ?: ""
-        binding.textViewName.text = userResponse.name ?: ""
-        binding.textViewPhone.text = userResponse.phone ?: ""
-        binding.textViewWebsite.text = userResponse.website ?: ""
+    private fun showSelectedUserInfo(showResponse: ShowResponse) {
+        Log.e("Kumi", "response ${showResponse.show.name}")
     }
 
-    private fun setupAdapter(list: List<UserResponse>) {
-       val recyclerView = binding.usersRecyclerView
+    private fun setupAdapter(list: List<ShowResponse>) {
+        val recyclerView = binding.usersRecyclerView
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val adapter = UserAdapter(list) {
+        val adapter = ShowsAdapter(list) {
             viewModel.onItemSelect(it)
         }
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(this,
+            LinearLayoutManager.VERTICAL)
+        )
         recyclerView.adapter = adapter
     }
 }

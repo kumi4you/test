@@ -7,12 +7,12 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.kumar.test.R
-import com.kumar.test.data.model.UserResponse
+import com.kumar.test.data.model.ShowResponse
 
-class UserAdapter(
-    private var userInfoList: List<UserResponse>,
-    private val userInfoListener: (UserResponse) -> Unit
-) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class ShowsAdapter(
+    private var showInfoList: List<ShowResponse>,
+    private val showInfoListener: (ShowResponse) -> Unit
+) : RecyclerView.Adapter<ShowsAdapter.UserViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -22,17 +22,17 @@ class UserAdapter(
         return UserViewHolder(view)
     }
 
-    override fun getItemCount(): Int = userInfoList.size
+    override fun getItemCount(): Int = showInfoList.size
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
 
-        val userInfo = userInfoList[position]
+        val showResponse = showInfoList[position]
 
-        holder.name.text = userInfo.name
-        holder.email.text = userInfo.email
+        holder.name.text = showResponse.show.name
+        holder.email.text = showResponse.score.toString()
 
         holder.layout.setOnClickListener {
-            userInfoListener(userInfo)
+            showInfoListener(showResponse)
         }
     }
 

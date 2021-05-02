@@ -12,73 +12,31 @@
         android:layout_height="wrap_content"
         tools:context=".presentation.ui.MainActivity">
 
-        <TextView
-            android:id="@+id/textViewNameLabel"
-            android:layout_width="wrap_content"
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="32dp"
-            android:text="@string/name"
+            android:hint="@string/name"
+            android:focusable="true"
+            app:layout_constraintEnd_toStartOf="@id/searchButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewName"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/searchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            app:layout_constraintBottom_toBottomOf="@id/textViewNameLabel"
-            app:layout_constraintStart_toEndOf="@id/textViewNameLabel"
-            app:layout_constraintTop_toTopOf="@id/textViewNameLabel" />
+            android:text="@string/go"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/editTextSearch"
+            app:layout_constraintBottom_toBottomOf="@id/editTextSearch"
+            android:layout_marginEnd="16dp"
+            />
 
-        <TextView
-            android:id="@+id/textViewEmailLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/email"
-            app:layout_constraintStart_toStartOf="@id/textViewNameLabel"
-            app:layout_constraintTop_toBottomOf="@id/textViewNameLabel" />
-
-        <TextView
-            android:id="@+id/textViewEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/textViewName"
-            app:layout_constraintTop_toTopOf="@id/textViewEmailLabel" />
-
-        <TextView
-            android:id="@+id/textViewWebsiteLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/website"
-            app:layout_constraintStart_toStartOf="@id/textViewEmailLabel"
-            app:layout_constraintTop_toBottomOf="@id/textViewEmailLabel" />
-
-        <TextView
-            android:id="@+id/textViewWebsite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/textViewEmail"
-            app:layout_constraintTop_toTopOf="@id/textViewWebsiteLabel" />
-
-        <TextView
-            android:id="@+id/textViewPhoneLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/phone"
-            app:layout_constraintStart_toStartOf="@id/textViewWebsiteLabel"
-            app:layout_constraintTop_toBottomOf="@id/textViewWebsiteLabel" />
-
-        <TextView
-            android:id="@+id/textViewPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/textViewPhoneLabel"
-            app:layout_constraintStart_toStartOf="@id/textViewWebsite"
-            app:layout_constraintTop_toTopOf="@id/textViewPhoneLabel" />
 
         <View
             android:id="@+id/divider"
@@ -87,31 +45,50 @@
             android:layout_marginTop="16dp"
             android:background="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewPhoneLabel" />
-
-        <TextView
-            android:id="@+id/userLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Users"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider" />
+            app:layout_constraintTop_toBottomOf="@id/editTextSearch" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/usersRecyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="16dp"
             android:scrollbars="horizontal"
             app:layout_constrainedHeight="true"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/userLabel"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+        <Button
+            android:id="@+id/buttonScoreSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/score"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonTitleSort"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonTitleSort" />
+
+        <Button
+            android:id="@+id/buttonTitleSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tittle"
+            app:layout_constraintEnd_toStartOf="@+id/buttonTimeSort"
+            app:layout_constraintStart_toEndOf="@+id/buttonScoreSort"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <Button
+            android:id="@+id/buttonTimeSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/time"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonTitleSort"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonTitleSort" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

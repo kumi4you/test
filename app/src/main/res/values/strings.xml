@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">test</string>
-    <string name="name">Name</string>
-    <string name="email">Email</string>
-    <string name="website">Website</string>
-    <string name="phone">Phone</string>
+    <string name="app_name">TV Maze</string>
+    <string name="name">Show Name</string>
+    <string name="go">Go</string>
+    <string name="score">Score</string>
+    <string name="tittle">Tittle</string>
+    <string name="time">Time</string>
 </resources>

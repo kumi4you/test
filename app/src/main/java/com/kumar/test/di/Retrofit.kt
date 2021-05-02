@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 private const val CONNECTION_TIMEOUT = 30L
 private const val WRITE_TIMEOUT = 30L
 private const val READ_TIMEOUT = 30L
-private const val BASE_URL = "http://api.tvmaze.com"
+private const val BASE_URL = "https://api.tvmaze.com"
 
 val retrofitModule = module {
     single { Cache(androidApplication().cacheDir, 10L * 1024 * 1024) }
