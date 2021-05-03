@@ -54,12 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSelectedUserInfo(showResponse: ShowResponse) {
-
         ShowInfoActivity.launchActivity(this, showResponse)
-
-        /*
-        Log.e("Kumi", "response ${showResponse.show.name}")
-         */
     }
 
     private fun setupAdapter(list: List<ShowResponse>) {
