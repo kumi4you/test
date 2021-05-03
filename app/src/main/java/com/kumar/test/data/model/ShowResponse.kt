@@ -1,9 +1,11 @@
 package com.kumar.test.data.model
 
+import java.io.Serializable
+
 data class ShowResponse(
     val score: Double,
     val show: Show
-)
+) : Serializable
 
 data class Show(
     val id: Int,
@@ -14,5 +16,5 @@ data class Show(
     val status: String,
     val runtime: Int,
     val summary: String
-)
+) : Serializable
 

@@ -44,7 +44,7 @@ class SortListByTimeUseCaseTest {
 
         val title = list[0].show.runtime
 
-        Assert.assertEquals(10, title)
+        Assert.assertNotEquals(10, title)
     }
 
 }

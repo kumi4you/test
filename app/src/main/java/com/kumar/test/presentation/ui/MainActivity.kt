@@ -1,7 +1,6 @@
 package com.kumar.test.presentation.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,7 +54,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSelectedUserInfo(showResponse: ShowResponse) {
+
+        ShowInfoActivity.launchActivity(this, showResponse)
+
+        /*
         Log.e("Kumi", "response ${showResponse.show.name}")
+         */
     }
 
     private fun setupAdapter(list: List<ShowResponse>) {
@@ -67,8 +71,10 @@ class MainActivity : AppCompatActivity() {
             viewModel.onItemSelect(it)
         }
         recyclerView.addItemDecoration(
-            DividerItemDecoration(this,
-            LinearLayoutManager.VERTICAL)
+            DividerItemDecoration(
+                this,
+                LinearLayoutManager.VERTICAL
+            )
         )
         recyclerView.adapter = adapter
     }
