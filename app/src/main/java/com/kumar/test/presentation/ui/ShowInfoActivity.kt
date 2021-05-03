@@ -2,7 +2,6 @@ package com.kumar.test.presentation.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.kumar.test.data.model.ShowResponse
 import com.kumar.test.databinding.ActivityShowInfoBinding

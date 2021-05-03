@@ -1,6 +1,5 @@
 package com.kumar.test.usecase
 
-import com.kumar.test.data.model.Show
 import com.kumar.test.data.model.ShowResponse
 import com.kumar.test.domain.usecase.SortListByTimeUseCase
 import org.junit.Assert
